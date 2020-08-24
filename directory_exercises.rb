@@ -156,7 +156,6 @@ end
 =end
 
 def print_group_cohorts(students) #prints the cohorts sperated into groups
-
   sort_by_months = {}
 
   students.each do |student|
@@ -170,17 +169,21 @@ def print_group_cohorts(students) #prints the cohorts sperated into groups
   end
 
   sort_by_months.each do |cohort|
-    puts cohort
-    students.each { |student| puts student[:name] if student[cohort] == cohort}
+    if students.count > 0
+      puts cohort
+      students.each { |student| puts student[:name] if student[cohort] == cohort}
+    end
   end
 end
 
 def print_footer(students)
-    if students.count == 1
-      puts "Overall, we have #{students.count} great student."
-    else
-      puts "Overall, we have #{students.count} great students."
-    end
+  if students.count < 1
+    nil
+  elsif students.count == 1
+    puts "Overall, we have #{students.count} great student."
+  else
+    puts "Overall, we have #{students.count} great students."
+  end
 end
 
 
