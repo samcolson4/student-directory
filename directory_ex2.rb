@@ -1,6 +1,8 @@
 @students = []
 
 def open_file(filename = "students.csv")
+  puts "What file would you like to load the students from?"
+  filename = gets.chomp
   File.open(filename, "a+") #opens the file in append mode
 end
 
@@ -45,7 +47,7 @@ end
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the list to students.csv"
+  puts "3. Save the list"
   puts "9. Exit and close the file"
 end
 
@@ -102,18 +104,3 @@ end
 # try_load_students
 load_students
 interactive_menu
-
-
-=begin
-def try_load_students
-  filename = ARGV.first #first argument in the command line
-  return if filename.nil?
-  if File.exists?(filename) #if it exists?
-    load_students(filename)
-    puts "Loaded #{@students.count} from #{filename}."
-  else # if it doesn't exist
-    puts "Sorry, #{filename} doesn't exist."
-    exit
-  end
-end
-=end
