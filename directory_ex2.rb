@@ -1,8 +1,8 @@
+require 'csv'
+
 @students = []
 
 def open_file(filename = "students.csv")
-  puts "What file would you like to load the students from?"
-  filename = gets.chomp
   File.open(filename, "a+") #opens the file in append mode
 end
 
@@ -10,11 +10,18 @@ def close_file
   @file.close
 end
 
+=begin
 def load_students
-  @file.readlines.each { |line|
+  @file.readlines.each do |line|
   name, cohort = line.chomp.split(",")
   add_to_students(name, cohort)
-  }
+  end
+end
+=end
+
+def load_students_CSV
+  CSV.foreach(@file) do |row| name, cohort = row.chomp.split(",")  add_to_students(name, cohort)
+  end
 end
 
 @file = open_file("students.csv")
@@ -101,6 +108,5 @@ def save_students
 end
 
 
-# try_load_students
-load_students
+load_students_CSV
 interactive_menu
